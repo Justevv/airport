@@ -5,7 +5,7 @@ Vue.component('airport-form', {
     props: ['airports', 'countries'],
     template:
         '<div>' +
-        '<select v-model="country">' +
+        '<select v-model="country" multiple>' +
         '<option value=""></option>' +
         '<option v-for="country in countries">{{country}}</option>' +
         '</select>' +

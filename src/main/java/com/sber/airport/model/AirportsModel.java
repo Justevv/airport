@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -24,11 +25,15 @@ public class AirportsModel {
         return airportEntities;
     }
 
-    public List<AirportEntity> getAirports(String country) {
-        LOGGER.debug("Input filter for airports {}", country);
+    public List<AirportEntity> getAirports(String countryBundle) {
+        LOGGER.debug("Input filter for airports {}", countryBundle);
         List<AirportEntity> airportEntities = new ArrayList<>();
-        airportRepository.getAirports().stream().filter(x -> x.getCountry().equals(country)).forEach(airportEntities::add);
+        airportRepository.getAirports().stream().filter(x -> parseCountries(countryBundle).contains(x.getCountry())).forEach(airportEntities::add);
         LOGGER.debug("Current list of filtered airport entities {}", airportEntities);
         return airportEntities;
+    }
+
+    private List<String> parseCountries(String countryBundle) {
+        return Arrays.asList(countryBundle.split(","));
     }
 }

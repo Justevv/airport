@@ -28,10 +28,10 @@ public class Airport {
         return airports;
     }
 
-    @GetMapping("{country}")
-    public List<AirportEntity> getAirports(@PathVariable String country) {
-        LOGGER.debug("Input filter for airports {}", country);
-        List<AirportEntity> airports = airportsModel.getAirports(country);
+    @GetMapping("{countryBundle}")
+    public List<AirportEntity> getAirports(@PathVariable String countryBundle) {
+        LOGGER.debug("Input filter for airports {}", countryBundle);
+        List<AirportEntity> airports = airportsModel.getAirports(countryBundle);
         LOGGER.debug("Current list of filtered airport entities {}", airports);
         return airports;
     }
